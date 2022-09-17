@@ -1,0 +1,33 @@
+Exercise Pandas week 01
+Nama: Nicovan Renardy
+NRP: 2173001
+
+Pandas adalah method pada bahasa pemograman Phyton untuk membuat suatu Data Frame.
+Cara menggunakan method Pandas:
+- Import terlebih dahulu import pandas as pd dan import numpy as np. Untuk melihat versi Pandas ketikan print(pd.__version__) dan print(np.__version__).
+- Masukan jumlah baris dan kolom kedalam atribut, input nama-nama kolom misalnya dengan tuple.
+- Masukan isi data framenya dengan fungsi pd.DataFrame() pada sebuah atribut dilanjutkan dengan misalnya angka acak: np.random.randint(bilangan_awal, bilangan_akhir, size=(banyak_baris, banyak_kolom), columns=nama_kolom)
+
+df sebagai atribut untuk DataFrame.
+
+Cara menambahkan prefix atau kata awalan pada nama kolom:
+- Setelah memiliki data frame, gunakan fungsi: df.add_prefix(kataAwal_)
+Cara menambahkan suffix atau kata akhiran pada nama kolom:
+- Setelah memiliki data frame, gunakan fungsi: df.add_suffix(_kataAkhir)
+
+Pemilihan baris dengan bilangan yang diminta pada suatu kolom di dalam Data Frame:
+- Menggunakan or | : contoh: df[(df['A'] == 1) | (df['A'] == 2)]
+- Menggunakan isin: contoh: df[df['A'].isin([1, 3])]
+
+Pemilihan baris dengan bilangan diluar yang diminta pada suatu kolom di dalam Data Frame:
+- Menggunakan isin dengan ~: contoh: df[~df['A'].isin([1, 3])]
+
+Konversi data dari Object/String ke numerik:
+- Cek tipe data apa saja yang ada di dalam Data Frame: df_x.dtypes
+- Mengubah data String atau Object ke numerik df. apply(pd.to_numeric, errors='coerce'). errors='coerce' untuk mencegah error muncul
+
+Memilih kolom bertipe data apa saja untuk ditampilkan:
+- Kolom dengan data numerik: df.select_dtypes(include='number')
+- KOlom dengan data object: df.select_dtypes(include='object')
+- KOlom dengan data datetime: df.select_dtypes(include='datetime')
+- KOlom dengan data numerik dan object: df.select_dtypes(include='[number', 'object'])
