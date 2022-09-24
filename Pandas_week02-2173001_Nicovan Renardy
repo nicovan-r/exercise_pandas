@@ -1,4 +1,26 @@
 Nama: Nicovan Renardy
 NRP: 2173001
 
-Python pandas week kedua memepelajari tentang membalik urutan kolom dan baris pada DataFrame, mengganti nama kolom pada DataFrame, menghapus missing values pada DataFrame, dan memeriksa kesamaan antar kolom series pada DataFrame.
+Python pandas week kedua memepelajari tentang membalik urutan kolom dan baris pada DataFrame, mengganti nama (label) kolom pada DataFrame, menghapus missing values pada DataFrame, dan memeriksa kesamaan antar kolom series pada DataFrame.
+
+df adalah atribut memanggil DataFrame.
+1. Membalik urutan kolom dan baris pada DataFrame.
+  Import dulu: import pandas as pd
+               import numpy as np
+  - Setelah membuat DataFrame, urutan kolom dapat dibalik dengan: df.loc[:, ::-1] <-- parameter pertama titik dua artinya memilih semua baris, parameter kedua titik dua artinya memilih semua kolom dengan dibalik urutannya (-1).
+  - Urutan baris juga dapat dibalik dengan: df.loc[::-1].
+  - Mengatur ulang (reset) urutan baris seperti semula setelah membalikan urutan: df.loc[::-1].reset_index(drop=True) <-- Drop==True artinya data lama akan dibuang.
+2. Mengganti nama (label) kolom pada DataFrame.
+  - Mengganti satu label kolom: df.rename(columns={'nama kolom lama':'nama kolom baru'})
+  - Mengganti banyak label kolom: df.rename(columns={'nama kolom lama':'nama kolom baru', 'nama kolom lama':'nama kolom baru', 'nama kolom lama':'nama kolom baru'})
+3. Menghapus/drop missing values/NaN.
+  - Untuk menjadi contoh DataFrame yang terdapat missing values di dalamnya, bisa dibuat dengan menggunakan pd.util.testing.makeMissingDataframe().reset_index() <-- .reset_index() untuk menambahkan index urutan angka dari angka 0.
+  - Kemudian membackup data agar ketika data lama di ubah, masih ada data cadangan: df.copy(deep=True).
+  - Menghapus semua kolom yang terdapat missing values/NaN: df = df.dropna(axis='columns') 
+  - Menghapus semua baris yang terdapat missing values/NaN: df = df.dropna(axis='rows')
+  - Menghapus data dengan syarat batas/thresold: treshold = len(df) * 0.9 <-- 0.9 adalah batas bilangan.
+4. Memeriksa kesamaan antara kedua kolom (series) pada data:
+  - Mengetahui jenis pandas series: type(df['nama kolom'])
+  - Mengetahui jenis atribut: type(df)
+  - Memeriksa kesamaan data: disarankan menggunakan equals() daripada operator == karena operator == kadangkali ada salah membandingkan. Misalnya: df['Nama kolom'].equals(df['Nama kolom perbandingan'])
+  - Memeriksa kesamaan isi antar Dataframe: df.equals(df_perbandingan)
