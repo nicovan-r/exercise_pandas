@@ -1,0 +1,21 @@
+Nama: Nicovan Renardy
+NRP: 2173001
+
+Week 3 Phyton Pandas hari ini membahas cara membagi data frame menjadi dua secara acak, mengganti nama kolom data frame kolom berdasarkan pola, seleksi kolom dan baris data frame menggunakan loc, dan membentuk kolom bertipe datetime dari beberapa kolom lain pada pandas data frame. 
+
+1. Membagi data frame menjadi dua secara acak
+  -Siapkan data frame bentuk tuple terlebih dahulu, lalu lihat jumlah kolom dan baris pada data frame tersebut menggunakan df.shape
+  -Cantumkan berapa persen proporsi bagi untuk data frame 1 dan data frame 2. df.sample(frac=proporsi) df.drop(df_1.index). drop untuk menghapus jumlah baris dari data frame 1. Kemudian run hasilnya. Hasil data apa saja yang ada di data frame 1 dan data frame 2 teracak.
+2. Mengganti nama kolom data frame kolom berdasarkan pola
+  -Siapkan data frame terlebih dahulu, kali ini menggunakan sample data Pythonic dataset dengan load: pd.read_csv('./data/titanicfull.csv') kedalam sebuah atribut. Namakan kolom dengan df.columns = [] bentuk struktur data list. Duplikatlah data frame: df.copy(deep=True). Kemudian untuk menampilkan data frame: df.head() akan menampilkan 5 baris.
+  -Misalnya ingin mengganti nama kolom yang mengandung spasi menjadi underscore dan mengubah semua teks menjadi lowercase tanpa menghapus spasi di sisi kanan dan kiri teks: df.columns.str.replace(' ', '_').str.lower(). Kemudian df.columns.str.lower().str.strip().str.replace(' ', '_') untuk menghapus sisa spasi di sisi kanan dan kiri.
+3. Seleksi kolom dan baris data frame menggunakan loc
+  -Siapkan data frame bentuk tuple terlebih dahulu.
+  -Seleksi kolom dan baris: df.loc[[nomor baris,nomor baris], ['nama kolom','nama kolom']]
+  -Seleksi kolom dan baris dengan kondisi tertentu: misalnya: df.loc[df['B']>10, ['B','D','E']]. Pada kondisi ini, index list 1 sebagai baris-baris dengan kondisi dan index 2 pemilihan kolom.
+  -Slicing: df.loc[nomor baris awal:nomor baris akhir, 'nama kolom awal':'nama kolom akhir']. Slicing dengan loc, ':' artinya awal sampai ke akhir.
+4. Membentuk kolom bertipe datetime dari beberapa kolom lain pada pandas data frame
+  -Buat data frame dengan struktur data dictionary, harus menggunakan bahasa inggris: 'day':[tanggal-tanggal], 
+                                                    'month':[nomor urutan bulan-bulan], 
+                                                    'year':[tahun-tahun]}
+  -Buat struktur data list untuk menampung penanggalan: df['penaggalan'] = pd.to_datetime(df[['day', 'month', 'year']])
