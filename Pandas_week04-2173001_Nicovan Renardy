@@ -1,0 +1,26 @@
+Nama: Nicovan Renardy
+NRP: 2173001
+
+Pandas Week 04
+Pandas week 04 meliputi: konversi nilai numerik ke dalam sejumlah kategori, menghubungkan (merge) kedua data frame, memecah nilai string dari suatu kolom ke dalam beberapa kolom baru, dan menata ulang data frame dengan multiple indexes menggunakan unstack().
+pd sebagai pandas
+df sebagai data frame
+
+1. Konversi  nilai numerik ke dalam sejumlah kategori
+  Gunakan pd.cut() untuk pengelompokan nilai numerik ke dalam sejumlah kategori:
+  df['kelompok_numerik'] = pd.cut(df['numerik'], 
+                             bins=[nilai awal, nilai akhir], <--bins bertipe List dan bernilai integer dengan koma sebagai pembatasnya.
+                             labels=['anak', 'dewasa', 'manula'])<--isi kelompok_usia menggunakan variable labels
+2. Menghubungkan (merge) kedua data frame
+  - Sediakan dua buah data set.
+  - Gabungkan dengan inner: df_inner = pd.merge(df1, df2, how='inner')<--how = pendekatan. Inner mengambil isi baris data frame yang dimiliki kedua df yang terpecah dan
+    merge akan memproduksi index yang baru.
+    Gabungkan dengan outer: df_outer = pd.merge(df1, df2, how='outer')<--Inner mengambil isi baris data frame yang tidak sama punya dari kedua df yang terpecah dan merge akan memproduksi index yang baru
+3. Memecah nilai string dari suatu kolom ke dalam beberapa kolom baru
+  - Siapkan dua kelompok data dictionary bertipe dictionary dan masukan ke dalam data frame
+  - Pecahkan dua string dengan df['string_utuh'].str.split('karakter pemisah'): sediakan dua variabel yang dimuat ke dalam kurung siku: 
+  df[['string1', 'string2']] = df['string_utuh'].str.split('karakter pemisah', expand=True)<--expand = true artinya mengizinkan output berupa dua kolom baru untuk  menampung pecahan string.
+4. Menata ulang data frame dengan multiple indexes menggunakan unstack()
+  - Siapkan sebuah data set.
+  - Mengelompokan data frame dengan multiple index menggunakan df.groupby(): df.groupby(['kolom1', 'kolom2'])['kolom_aggregated'].mean().to_frame()<--.to_frame() untuk membentuk frame.
+  - Menata ulang data frame dengan multiple indexes menggunakan unstack(): df.groupby(['kolom1', 'kolom2'])['kolom_aggregated'].mean().unstack()<--unstack() berfungsi untuk menata kolom_aggregated ke dalam kolom1 dan kolom2.
