@@ -30,3 +30,19 @@ pd.DataFrame(arr, columns=tuple('ABC'))<--karena numpy array belum ada label kol
 - Mengkonversi nilai ke satuan rupiah 100 ribuan. Underscore di Python sebagai ignore character untuk digital placeholder: misalnya: df['omset'] = df['omset'] * 100_000
 - Membuat kolom baru tanggal untuk indexnya: contoh: df.index = pd.util.testing.makeDateIndex(n_rows, freq='D')
 df = df.reset_index()<--membuat kolom bertipe tanggal bukan index nya tanggal. reset_index() untuk mengubah index saat ini ke kolom biasa bernama index
+- Mengatur format dataset:
+contoh: formatku = {'tanggal':'{:%d/%m/%y}',
+            'operasional':'Rp {:.2f}', 
+            'omset':'Rp {:.2f}'}
+- Menyembunyikan kolom index:
+(variabel).hide_index()
+- Memberi judul:
+(variabel).set_caption()
+- memberikan highlight minimum dan maximum suatu kolom:
+contoh:
+laporan.highlight_min('omset', color='pink')
+laporan.highlight_max('omset', color='lightgreen')
+
+4. Menggabungkan (merge) dua data frame secara berdampingan
+- Siapkan dua data frame
+- Gabungkan dengan cara: df = pd.merge(df1, df2, left_index=True, right_index=True)
