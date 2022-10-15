@@ -1,0 +1,32 @@
+Nama: Nicovan Renardy
+NRP: 2173001
+
+Python Pandas week 05
+Minggu ini mempelajari resampling pada data deret waktu, membentuk dummy data frame, formatting tampilan data frame, dan menggabungkan (merge) dua data frame secara berdampingan.
+
+1. Resampling pada data deret waktu:
+- Siapkan data frame deret waktu. Gunakan pd.util.testing.makeDateIndex untuk membentuk data deret waktu
+- Mengelompokan ulang data berdasarkan interval bulan (resample): df.resample('M')['col1'].sum().to_frame() <--fungsi sum mengubah dari berdasarkan jam ke data bulan menimbulkan agregasi, data tak bisa diakses per individual data
+- Mengelompokan ulang data berdasarkan interval hati (resample): df.resample('D')['col1'].sum().to_frame()
+
+2. Membentuk Dummy Data Frame:
+Membentuk data frame dapat berupa: dictionary, numpy array, pandas.util.testing.
+- Numpy array, buit-in function pada pandas data frame: 
+contoh: 
+n_rows = 5
+n_cols = 3
+
+arr = np.random.randint(1, 20, size=(n_rows, n_cols))<--membentuk numpy array dalam random integer. spesifikasikan size mulai dari banyak baris lalu banyak kolom
+arr
+pd.DataFrame(arr, columns=tuple('ABC'))<--karena numpy array belum ada label kolom, maka di sini harus memasukan nama kolom bertipe tuple untuk suatu nilai string
+- pandas.util.testing: 
+> makeDataFrame(): pd.util.testing.makeDataFrame().head() <--.head() menampilkan 5 baris pertama saja. Secara default, makeDataFrame menghasilkan dataframe yang terdiri dari 4 buah kolom bertipe acak (random)
+> makeMixedDataFrame(): pd.util.testing.makeMixedDataFrame().head()<--membuat data frame dummy yang tipe datanya mix (campur)
+> makeTimeDataFrame(): pd.util.testing.makeTimeDataFrame().head()<--Membuat data frame dummy data deret waktu (Time series data frame). Index berupa waktu
+> makeMissingDataFrame(): pd.util.testing.makeMissingDataframe().head()<--Membuat data frame dummy dengan beberapa missing value (NaN) yang ditempatkan secara acak
+
+3. Formatting tampilan Data Frame:
+- Siapkan data frame dua kolom
+- Mengkonversi nilai ke satuan rupiah 100 ribuan. Underscore di Python sebagai ignore character untuk digital placeholder: misalnya: df['omset'] = df['omset'] * 100_000
+- Membuat kolom baru tanggal untuk indexnya: contoh: df.index = pd.util.testing.makeDateIndex(n_rows, freq='D')
+df = df.reset_index()<--membuat kolom bertipe tanggal bukan index nya tanggal. reset_index() untuk mengubah index saat ini ke kolom biasa bernama index
