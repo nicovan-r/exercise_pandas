@@ -1,0 +1,28 @@
+Nama: Nicovan Renardy
+NRP: 2173001
+
+Pada pembelajaran Python Pandas week 06, mempelajari agregasi pada Pandas Data Frame dengan agg, memantau penggunaan memori pada Data Frame, seleksi baris pada Data Frame dengan query, dan UTC dan zona waktu pada Python Pandas.
+1. Agregasi pada Pandas Data Frame dengan agg()
+- Siapkan Data Frame contoh
+- Menggunakan groupby() dan fungsi agregasi:
+  df.groupby('nama kolom')['nama kolom target'].count().to_frame()<--pengelompokan Data Frame berdasarkan kolom Species. fungsi agregasi .count untuk menghitung jumlah tiap baris, .to_frame() agar output keluar sebagai data frame.
+  fungsi agregasi lainnya:
+  *median()
+  *mean()
+  *agg([fungsi agregasi],[fungsi agregasi])<--mengelompokan beberapa fungsi agregasi tertentu secara sekaligus.
+  *describe()<--untuk menampilkan descriptive statistics yang membutuhkan jumlah baris/data (count), mean, standar deviasi, min, kuartal 1, kuartal 2 yang identik dengan nilai median, kuartal 3, dan max.
+2. Memantau penggunaan memori pada Data Frame
+- Siapkan Data Frame contoh: df_titanic dan df_iris
+- Menghitung penggunaan memory pada Data Frame sampai object terakhir:
+  df_titanic.info(memory_usage='deep')<--parameter memory_usage='deep' untuk mengkalkulasi penggunaan memory sampai object terakhir yang tertampung pada Data Frame terkait.
+- Menghitung penggunaan memory pada Data Frame sampai object terakhir dari setiap kolom:
+  df_iris.memory_usage(deep=True)<--penggunaan memory dalam satuan byte.
+3. Seleksi baris pada Data Frame dengan query
+- Siapkan Data Frame bertipe Dictionary
+- df.query('kolom_satu > 2')<--menggunakan .query(nama kolom, kondisi) untuk query statement menggunakan tipe data String.
+- df.query('`kolom dua` > 30')<--kalau query nama kolom yang berspasi, apitlah nama kolom menggunakan backtick agar Python Interpreter tahu yang ada spasi merupakan suatu kesatuan.
+4. UTC dan zona waktu pada Python Pandas.
+- Siapkan Pandas Series: s = pd.Series(range(1591683521, 1592201921, 3600))<--range jangkauan nilai dengan step atau interval 3600<--jumlah detik dalam satu jam. Dalam range, angka 1591683521, 1592201921 merepresentasikan unix epoch time/posix time: waktu atau penunjuk waktu yang dimulai dari 1 Januari 1970, angka di epoch time yaitu jumlah detik sejak tahun 1970.
+                         s = pd.to_datetime(s, unit='s') <--mengkonversi epoch time ke data datetime dengan .to_datetime(series, unit='s'). unit second
+                         s.head() <--hanya menampilkan 5 baris pertama.
+- Konversi dari Pandas Series bertipe data datetime ke strandarisasi dengan zona waktu UTC: s = s.dt.tz_localize('UTC')<--localize juga bisa dengan zona waktu lainnya.
