@@ -3,9 +3,9 @@ NRP: 2173001
 
 Python Pandas week 07 membahas tentang pengaturan tampilan, membuat Data Frame dari hasil seleksi spreadsheet, fungsi agregasi first dan last, dan mengenal explode dan implode pada Data Frame.
 1. Pengaturan tampilan:
-- Menentukan jumlah maksimal baris yang akan ditampilkan: pd.set_option('display.max_rows', 5) 
-- Menentukan jumlah maksimal kolom yang akan ditampilkan: pd.set_option('display.max_columns', 6)
-- Menentukan jumlah maksimal panjang karakter kolom yang akan ditampilkan: pd.set_option('display.max_colwidth', 20)
+- Menentukan jumlah maksimal baris yang akan ditampilkan: pd.set_option('display.max_rows', jumlah baris maksimal) 
+- Menentukan jumlah maksimal kolom yang akan ditampilkan: pd.set_option('display.max_columns', jumlah kolom maksimal)
+- Menentukan jumlah maksimal panjang karakter kolom yang akan ditampilkan: pd.set_option('display.max_colwidth', panjang karakter nama kolom maksimal)
 - Mereset display option dataframe: pd.reset_option('^display.', silent=True)
 - Menampilkan daftar opsi apa saja yang bisa diatur pada Python Pandas: pd.describe_option()
 
@@ -15,7 +15,7 @@ Python Pandas week 07 membahas tentang pengaturan tampilan, membuat Data Frame d
 3. Fungsi agregasi first dan last
 - Fungsi agregasi standar count(): df.groupby('kelompok') ['isi dari kelompok'] <-- mengelompokan dengan jumlah isi dari kelompok
 - Fungsi agregasi first(): df.groupby('kelompok')['isi dari kelompok'].first().to_frame() <--menampilkan data pertama pada isi baris pertama untuk setiap kelompoknya
-- Fungsi agregasi last(): f.groupby('dokter')['pasien'].last().to_frame() <--menampilkan data terakhir pada isi baris terakhir untuk setiap kelompoknya
+- Fungsi agregasi last(): f.groupby('kelompok')['isi dari kelompok'].last().to_frame() <--menampilkan data terakhir pada isi baris terakhir untuk setiap kelompoknya
 
 4. Mngenal explode dan implode pada Data Frame
 - Siapkan data frame isinya berbentuk list ke dalam variabel d.
