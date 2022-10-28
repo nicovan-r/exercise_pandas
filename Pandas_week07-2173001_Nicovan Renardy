@@ -1,0 +1,23 @@
+Nama: Nicovan Renardy
+NRP: 2173001
+
+Python Pandas week 07 membahas tentang pengaturan tampilan, membuat Data Frame dari hasil seleksi spreadsheet, fungsi agregasi first dan last, dan mengenal explode dan implode pada Data Frame.
+1. Pengaturan tampilan:
+- Menentukan jumlah maksimal baris yang akan ditampilkan: pd.set_option('display.max_rows', 5) 
+- Menentukan jumlah maksimal kolom yang akan ditampilkan: pd.set_option('display.max_columns', 6)
+- Menentukan jumlah maksimal panjang karakter kolom yang akan ditampilkan: pd.set_option('display.max_colwidth', 20)
+- Mereset display option dataframe: pd.reset_option('^display.', silent=True)
+- Menampilkan daftar opsi apa saja yang bisa diatur pada Python Pandas: pd.describe_option()
+
+2. Membuat Data Frame dari hasil seleksi spreadsheet
+- Mengakses data yang tersimpan dalam clipboard/data dari spreadsheet yang dicopy sebagai data frame: df = pd.read_clipboard() <-- baris pertama pada spreadsheet yang dicopy maka akan jadi nama kolom.
+
+3. Fungsi agregasi first dan last
+- Fungsi agregasi standar count(): df.groupby('kelompok') ['isi dari kelompok'] <-- mengelompokan dengan jumlah isi dari kelompok
+- Fungsi agregasi first(): df.groupby('kelompok')['isi dari kelompok'].first().to_frame() <--menampilkan data pertama pada isi baris pertama untuk setiap kelompoknya
+- Fungsi agregasi last(): f.groupby('dokter')['pasien'].last().to_frame() <--menampilkan data terakhir pada isi baris terakhir untuk setiap kelompoknya
+
+4. Mngenal explode dan implode pada Data Frame
+- Siapkan data frame isinya berbentuk list ke dalam variabel d.
+- Explode: df1 = df.explode('kolom isi dari kelompok') <--meledakan setiap item pada suatu list menjadi baris-baris terpisah
+- Implode: ubah menjadi isi pada data frame variabel d menjadi kelompok Team saja ke variabel df2 lalu masukan df2['Imploded'] = df1.groupby(df1.index)['kolom isi dari kelompok'].agg(list) #menyatukan kembali menjadi suatu list berdasarkan kelompoknya dengan membentuk kolom baru bernama Imploded. Dikelompokan berdarkan index df1 kolom isi dari kelompok diagregasi kedalam suatu list
