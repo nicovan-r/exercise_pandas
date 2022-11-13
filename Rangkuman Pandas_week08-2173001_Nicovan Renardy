@@ -1,0 +1,31 @@
+Nama: Nicovan Renardy
+NRP: 2173001
+
+Pandas week 08 membahas tentang random sampling pada Data Frame, akses nilai variabel pada query(), mengenal data tipe ordinal pada Pandas, dan plotting dari suatu Pandas Data Frame.
+
+1. Random sampling pada Data Frame
+- Random sampling without replacement: 
+df.sample(n=4, replace=False, random_state=0) <--3 parameter pada df.sample(), n untuk banyak index, replace=False untuk without replacement (data yang sudah disampling dari population tidak disampling ulang), random_state berkorelasi dengan nilai random state number dengan angka integer berapapun menjamin setiap eksperimen bisa direplikasi/dilakukan ulang dengan hasil yang sama
+- Random sampling with replacement:
+df.sample(n=4, replace=True, random_state=0)<--3 parameter pada df.sample(), n untuk banyak index, replace=True untuk with replacement (data yang sudah disampling dari population disampling ulang, index sama dapat dimunculkan berkali-kali), random_state berkorelasi dengan nilai random state number dengan angka integer berapapun menjamin setiap eksperimen bisa direplikasi/dilakukan ulang dengan hasil yang sama.
+
+2. Akses nilai variabel pada query():
+- df.query('<nama kolom> > batas')<--method query() digunakan untuk menyeleksi baris. df.query() menyeleksi baris-baris pada kolom A yang lebih daripada 10
+- Misal ada variabel: rerata = df['A'].mean(), panggil di qery() dengan df.query('A > @rerata')<--mencantum @ sebelum variabel yang nilainya menjadi acuan df.query dari kolom tertentu
+
+3. Mengenal data tipe ordinal pada Pandas
+Tipe data ordinal dalam statistik termasuk dalam tipe data kategori yang terbagi jadi 2: nominal dan ordinal. Perbedaan: nominal memiliki sifat murni sebagai label, ordinal memiliki tingkatan/urutan yang memilki makna.
+- from pandas.api.types import CategoricalDtype<--modul CaterogicaclDtype untuk mengajarkan komputer makna dari tipe data ordinal yang ada dan menspesifikasikannya
+- df.sort_values('nama kolom', ascending=True)<--mengurutkan kepuasan secara ascending hasil sesuai urutan ordinal
+- df[df['kepuasan'] >= 'cukup']<--menampilkan data yang kepuasannya lebih dari baik atau sama dengan cukup
+
+4. Plotting dari suatu Pandas Data Frame
+- df.plot(kind='line')<--melakukan visualisasi data df sebagai line plot. Parameter (kind='line'), memplotting untuk keseluruhan kolom, setiap baris merepresentasikan kolom dengan lima buah baris yang saling bertumpuk. Index baris muncul sebagai sumbu X, nilai yang tertampung pada sel data frame sebagai sumbu y, warna garis merupakan kolom
+- df[['nama kolom', 'nama kolom']].plot(kind='line')<--melakukan plotting pada kolom-kolom tertentu ke dalam suatu list
+- df.plot(kind='bar')<--melakukan visualisasi data dalam bentuk bar plot. Parameter (kind='bar'), X axis merepresentasikan index baris, Y axis nilai yang ditampung di setiap sel, warna garis merupakan kolom
+- df[['nama kolom', 'nama kolom']].head().plot(kind='barh')<--merepresentasikan bar plot secara horizontal
+- df.plot(kind='area')<--mengvisualisasikan dengan model area plot, parameter (kind='area'),mirip dengan line plot namun nilai-nilai bertumpuk lalu memperoleh nilai kumulatif pada sumbu y dari sel-sel
+- df.plot(kind='box')<--mengvisualisasikan dengan model box plot, parameter (kind='box'), sumbu x merepresentasikan kolom, sumbu y menampilkan rentang nilai pada data frame
+- df.plot(kind='hist')<--mengvisualisasikan dengan model histogram, parameter (kind='hist'), warna merepresentasi kolomnya, sumbu y frekuensi/jumlah, sumbu x nilai tengah dari yang tertampung pada data frame
+- df.plot(kind='kde')<--mengvisualisasikan dengan model Kernel Density Estimation (KDE), parameter (kind='kde')
+- df.plot(x='A', y='B', kind='scatter')<--mengvisualisasikan dengan model scatter plot, parameter (kind='scatter'), scatter plot cocok untuk melihat korelasi antar variabel atau dua kolom dalam satu data frame, harus menspesifikasikan 2 kolom mana saja yang ingin diperhatikan
